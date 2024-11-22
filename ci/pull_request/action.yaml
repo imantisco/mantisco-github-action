@@ -1,4 +1,6 @@
 # Composite Action : https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
+# GitHub Action의 Compsite 액션 지정하기 : https://blog.outsider.ne.kr/1592
+
 
 name: PR Generator
 
