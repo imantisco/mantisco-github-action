@@ -107,7 +107,7 @@ def getPullRequestTemplate(
     labelList = list(set(labelList))
 
     githubPrTemplate: GitHubPrTemplate = {
-        'title': f'Feat/{head}...{base}',
+        'title': f'PR/{head}...{base}',
         'body': pullRequestBody,
         'labelList': labelList,
         'assigneeList': commiterList
