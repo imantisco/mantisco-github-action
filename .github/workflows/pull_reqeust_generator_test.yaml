@@ -9,8 +9,6 @@ on:
       - 'main'
 
 jobs:
-  using: composite
-
   test:
     runs-on: ubuntu-22.04
     
