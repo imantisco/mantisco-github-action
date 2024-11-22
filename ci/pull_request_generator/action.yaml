@@ -37,4 +37,5 @@ runs:
         echo "PR will be geneated from $sourceBranch to $destBranch"
 
         python ${{ github.action_path }}/action.py ${destBranch} ${sourceBranch}
+        
         # https://stackoverflow.com/questions/77728043/github-composite-action-to-run-python-script-in-repo
