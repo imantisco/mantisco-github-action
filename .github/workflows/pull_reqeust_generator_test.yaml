@@ -1,11 +1,5 @@
 name: PR Generator Test
 
-permissions:
-  pull-requests: write              # PR 작성 및 수정 권한
-  contents: read                    # 리포지토리 내용 읽기 권한
-  issues: read                      # 이슈 읽기 권한
-  repository-projects: read         # 프로젝트 읽기 권한
-
 on:
   push:
     branches:
@@ -15,16 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
-    permissions:
-      pull-requests: write              # PR 작성 및 수정 권한
-      contents: read                    # 리포지토리 내용 읽기 권한
-      issues: read                      # 이슈 읽기 권한
-      repository-projects: read         # 프로젝트 읽기 권한
         
     steps:
       - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
         with:
           dest_branch: dev
-        env:
-          GH_TOKEN: secrets.GITHUB_TOKEN
-          # github_token: ${{ github.token }}
+          github_token: ${{ github.token }}
