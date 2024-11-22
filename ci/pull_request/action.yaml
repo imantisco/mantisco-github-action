@@ -4,11 +4,12 @@
 name: PR Generator
 
 # Requirements : 아래 권한 추가 필요
-permissions:
-  pull-requests: write              # PR 작성 및 수정 권한
-  contents: read                    # 리포지토리 내용 읽기 권한
-  issues: read                      # 이슈 읽기 권한
-  repository-projects: read         # 프로젝트 읽기 권한
+# workflow.yaml# .job.[job-id].permissions에 아래 권한 추가
+# permissions:
+#   pull-requests: write              # PR 작성 및 수정 권한
+#   contents: read                    # 리포지토리 내용 읽기 권한
+#   issues: read                      # 이슈 읽기 권한
+#   repository-projects: read         # 프로젝트 읽기 권한
 
 input:
   dest_branch:
@@ -17,6 +18,7 @@ input:
 
   github_token:
     description: "{{ .github.token }} 필요"
+    required: true
 
 runs:
   using: composite
@@ -29,9 +31,14 @@ runs:
     - name: "[2/2] pr generate"
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.github_token }}
+        GH_TOKEN: ${{ env.GH_TOKEN}}
 
       run: |
+
+        echo $GH_TOKEN
+
+        exit 127
+        
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
 
