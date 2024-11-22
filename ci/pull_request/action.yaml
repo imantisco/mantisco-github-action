@@ -27,7 +27,7 @@ runs:
 
       run: |
         destBranch=${{ inputs.dest_branch }}
-        sourceBranch=${git branch --show-current}
+        sourceBranch=$(git branch --show-current)
 
         echo "PR will be geneated from $sourceBranch to $destBranch"
       
