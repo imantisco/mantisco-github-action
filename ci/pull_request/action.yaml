@@ -34,7 +34,9 @@ runs:
         GH_TOKEN: secrets.GITHUB_TOKEN
 
       run: |
-        echo "GH TOKEN : ${{ env.GH_TOKEN }}"
+        echo "GH_TOKEN"
+        echo ${{ env.GH_TOKEN }}
+        echo "GH_TOKEN"
 
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
