@@ -2,22 +2,36 @@
 # GitHub Action의 Compsite 액션 지정하기 : https://blog.outsider.ne.kr/1592
 # GitHub Workflow 재사용하기 : https://marshallku.com/dev/reuse-github-actions
 
-
-
 name: PR Generator
 
-# NEED PERMISSIONS
-# permissions:
-#   pull-requests: write              # PR 작성 및 수정 권한
-#   contents: read                    # 리포지토리 내용 읽기 권한
-#   issues: read                      # 이슈 읽기 권한
-#   repository-projects: read         # 프로젝트 읽기 권한
+input:
+  dest_branch:
+    description: "PR의 목적지"
+    required: true
+
+  source_branch:
+    description: "PR의 출발지" 
+    required: true
+
+  github_token:
+    description: "{{ .github.token }} 필요"
 
 runs:
   using: composite
   steps:
-    - name: checkout github with fetch-depth as 0
-      id: test
+    - name: "[1/2] checkout"
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
+    - name: "[2/2] pr generate"
+      env:
+        GH_TOKEN= ${{ inputs.github_token }}
+
+      runs: |
+        destBranch=${{ inputs.dest_branch }}
+        sourceBranch=${{ inputs.source_branch }}
+      
+        git fetch origin ${destBranch}...${sourceBranch}
+
+        # python action.py ${destBranch} ${sourceBranch}
