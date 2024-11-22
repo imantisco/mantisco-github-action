@@ -17,7 +17,7 @@ runs:
   using: composite
   steps:
     - name: checkout github with fetch-depth as 0
-      id: ci/pull_request/pull_request_generator
+      id: test
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
