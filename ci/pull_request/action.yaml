@@ -21,7 +21,7 @@ runs:
         fetch-depth: 0
 
     - name: "[2/2] pr generate"
-      shell: sh
+      shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
 
