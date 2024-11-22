@@ -67,7 +67,7 @@ def getPullRequestTemplate(
     # [B] PR Body 생성
     splitedCommand = [
         'git', 'log',
-        f'--pretty=format:"| %ad | [%s](%h) | [%an](%ae) "',
+        f'--pretty=format:"| %ad | %s | [%an](%ae) | %h "',
         f'--date=format-local:%y-%m-%d %H:%M',
         f'{base}..{head}'
     ]
@@ -78,8 +78,8 @@ def getPullRequestTemplate(
 - Contributor : {','.join(commiterList)}
 - Commit Logs
 
-| 시간 | 커밋 제목 | 기여자 이름 |
-| --------- | ---------- | ----------- |"""
+| 시간 | 커밋 제목 | 기여자 이름 | 커밋 ID | 
+| --------- | ---------- | ----------- | ----- |"""
 
     commitList = out.split('\n')
     for commit in commitList:
