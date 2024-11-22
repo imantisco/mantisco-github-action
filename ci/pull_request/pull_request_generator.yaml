@@ -1,0 +1,23 @@
+# Composite Action : https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
+
+name: PR Generator
+
+# NEED PERMISSIONS
+# permissions:
+#   pull-requests: write              # PR 작성 및 수정 권한
+#   contents: read                    # 리포지토리 내용 읽기 권한
+#   issues: read                      # 이슈 읽기 권한
+#   repository-projects: read         # 프로젝트 읽기 권한
+
+jobs:
+  using: composite
+
+  is_generatable:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - name: checkout github with fetch-depth as 0
+        id: ci/pull_request/pull_request_generator
+        uses: actions/checkout@v3
+        width:
+          fetch-depth: 0
