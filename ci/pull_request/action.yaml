@@ -9,10 +9,6 @@ input:
     description: "PR의 목적지"
     required: true
 
-  source_branch:
-    description: "PR의 출발지" 
-    required: true
-
   github_token:
     description: "{{ .github.token }} 필요"
 
@@ -31,8 +27,8 @@ runs:
 
       run: |
         destBranch=${{ inputs.dest_branch }}
-        sourceBranch=${{ inputs.source_branch }}
+        sourceBranch=${git branch --show-current}
       
-        git fetch origin ${destBranch}...${sourceBranch}
+        git fetch origin ${destBranch}..${sourceBranch}
 
         # python action.py ${destBranch} ${sourceBranch}
