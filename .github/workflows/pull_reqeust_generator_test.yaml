@@ -13,6 +13,6 @@ jobs:
     steps:
       - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
         with:
-          dest_branch: dev
+          dest_branch: main
         env:
           GITHUB_TOKEN: ${{ github.token }}
