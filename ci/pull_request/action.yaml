@@ -34,11 +34,6 @@ runs:
         GH_TOKEN: ${{ env.GH_TOKEN}}
 
       run: |
-
-        echo $GH_TOKEN
-
-        exit 127
-        
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
 
