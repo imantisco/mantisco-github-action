@@ -1,21 +1,14 @@
 # Composite Action : https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
 # GitHub Action의 Compsite 액션 지정하기 : https://blog.outsider.ne.kr/1592
 # GitHub Workflow 재사용하기 : https://marshallku.com/dev/reuse-github-actions
+name: PR Generator
 
 # Requirements : 아래 권한 추가 필요
-# permissions:
-#   pull-requests: write              # PR 작성 및 수정 권한
-#   contents: read                    # 리포지토리 내용 읽기 권한
-#   issues: read                      # 이슈 읽기 권한
-#   repository-projects: read         # 프로젝트 읽기 권한
-
 permissions:
   pull-requests: write              # PR 작성 및 수정 권한
   contents: read                    # 리포지토리 내용 읽기 권한
   issues: read                      # 이슈 읽기 권한
   repository-projects: read         # 프로젝트 읽기 권한
-
-name: PR Generator
 
 input:
   dest_branch:
