@@ -30,12 +30,12 @@ runs:
         sourceBranch=$(git branch --show-current)
 
         echo "PR will be geneated from $sourceBranch to $destBranch"
-        echo "========== Log =========="
-        git log "${destBranch}..${sourceBranch}" --oneline
-        echo "=========================="
-
         echo "========== Fetch =========="
         git fetch origin ${destBranch}:${sourceBranch}
         echo "==========================="
+
+        echo "========== Log =========="
+        git log "${destBranch}..${sourceBranch}" --oneline
+        echo "=========================="
 
         # python action.py ${destBranch} ${sourceBranch}
