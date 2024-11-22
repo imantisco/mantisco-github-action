@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-22.04
         
     steps:
-      - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
+      - uses: imantisco/mantisco-github-action/ci/pull_request_generator@main
         with:
           dest_branch: main
         env:
