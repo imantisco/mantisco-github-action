@@ -209,6 +209,7 @@ def createPullRequest(
         '--title', title,
         '--body', body
     ]
+    print(splitedCommand)
 
     TK = ','
     hasLabel = len(labelList) > 0
