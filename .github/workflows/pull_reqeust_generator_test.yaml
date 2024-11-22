@@ -5,7 +5,7 @@ on:
     branches:
       - '*'
 
-    ignore_brancehs:
+    branches-ignore:
       - 'main'
 
 jobs:
@@ -14,4 +14,3 @@ jobs:
     
     steps:
       - uses: imantisco/mantisco-github-action/ci/pull_request/pull_request_generator@main
-      
