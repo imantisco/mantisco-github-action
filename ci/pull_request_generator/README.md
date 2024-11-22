@@ -14,6 +14,9 @@ on:
     branches:
       - 'ci/*'
       - 'ci/*/*'
+      - 'feat/*'
+      - 'fix/*'
+      - 'hot-fix/*'
 
 jobs:
   test:
