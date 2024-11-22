@@ -3,10 +3,8 @@ name: PR Generator Test
 on:
   push:
     branches:
-      - '*'
-
-    branches-ignore:
-      - 'main'
+      - 'ci/*'
+      - 'ci/*/*'
 
 jobs:
   test:
