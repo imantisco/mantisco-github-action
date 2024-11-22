@@ -25,4 +25,6 @@ jobs:
       - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
         with:
           dest_branch: dev
-          github_token: ${{ github.token }}
+        env:
+          GH_TOKEN: secrets.GITHUB_TOKEN
+          # github_token: ${{ github.token }}

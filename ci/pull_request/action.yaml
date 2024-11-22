@@ -16,9 +16,9 @@ input:
     description: "PR의 목적지"
     required: true
 
-  github_token:
-    description: "{{ .github.token }} 필요"
-    required: true
+  # github_token:
+  #   description: "{{ .github.token }} 필요"
+  #   required: true
 
 runs:
   using: composite
@@ -31,9 +31,11 @@ runs:
     - name: "[2/2] pr generate"
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.github_token }}
+        GH_TOKEN: secrets.GITHUB_TOKEN
 
       run: |
+        echo "GH TOKEN : ${{ env.GH_TOKEN }}"
+
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
 
