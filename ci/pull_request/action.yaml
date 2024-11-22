@@ -29,13 +29,11 @@ runs:
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
 
-        echo "PR will be geneated from $sourceBranch to $destBranch"
-        echo "========== Fetch =========="
+        echo "Git tree is being verified from $sourceBranch to $destBranch"
+        
         git fetch origin ${destBranch}:${destBranch}
-        echo "==========================="
-
-        echo "========== Log =========="
         git log "${destBranch}..${sourceBranch}" --oneline
-        echo "=========================="
 
-        # python action.py ${destBranch} ${sourceBranch}
+        echo "PR will be geneated from $sourceBranch to $destBranch"
+
+        python action.py ${destBranch} ${sourceBranch}
