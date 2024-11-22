@@ -19,5 +19,5 @@ runs:
     - name: checkout github with fetch-depth as 0
       id: ci/pull_request/pull_request_generator
       uses: actions/checkout@v3
-      width:
+      with:
         fetch-depth: 0
