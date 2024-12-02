@@ -41,6 +41,8 @@ runs:
         ls
         which travy
 
+        rm trivy_0.57.1_Linux-64bit.deb
+        rm trivy_0.57.1_Linux-64bit.deb.1
       # if: steps.trivy-cache.outputs.cache-hit == 'true'
       shell: bash
 
