@@ -17,7 +17,7 @@ runs:
         path: |
           trivy_0.57.1_Linux-64bit.deb
           /usr/bin/trivy
-        key: ${{ runner.os }}-trivy-${{ hashFiles('trivy_0.57.1_Linux-64bit.deb') }}
+        key: ${{ runner.os }}-trivy-${{ hashFiles('trivy_0.57.1_Linux-64bit.deb.1') }}
         restore-keys: |
           ${{ runner.os }}-trivy-
 
@@ -42,6 +42,9 @@ runs:
         rm trivy_0.57.1_Linux-64bit.deb
         
         which trivy
+
+        id
+        ls -al /usr/bin/trivy
       # if: steps.trivy-cache.outputs.cache-hit == 'true'
       shell: bash
 
