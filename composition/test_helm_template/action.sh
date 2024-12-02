@@ -81,6 +81,8 @@ validateHelmChart() {
 
 
 helmChartList=$(listHelmChart)
+echo "helmChartList : $helmChartList"
+
 for helmChart in $helmChartList
 do
     validateHelmChart "$helmChart"
