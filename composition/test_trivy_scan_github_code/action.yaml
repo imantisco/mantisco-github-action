@@ -1,4 +1,5 @@
-# Ref : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-your-git-repo
+# Scan : https://github.com/imantisco/mantisco-github-action/security
+# Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-your-git-repo
 name: Composition / Test Trivy scan github code
 
 input:
