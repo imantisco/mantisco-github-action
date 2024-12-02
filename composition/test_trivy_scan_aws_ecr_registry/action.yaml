@@ -44,13 +44,13 @@ runs:
       id: trivy-execution
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        image-ref: ${{ secrets.AWS_ECR_IMAGE_REF }}
+        image-ref: ${{ env.AWS_ECR_IMAGE_REF }}
         format: ${{ inputs.format }}
         output: ${{ inputs.output_file }}
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
 
     - name: "[4/7] Trivy 결과 Output에 저장하기"
       id: trivy-result
