@@ -1,7 +1,5 @@
 name: Composition / Test Trivy FS(FileSystem)
 
-input:
-
 runs:
   using: composite
   steps:
@@ -17,11 +15,7 @@ runs:
         version: v0.57.1
 
     - name: "[3/3] Trivy 실행하기"
-      uses: aquasecurity/trivy-action@master
-      with:
-        scan-type: 'fs'
-        ignore-unfixed: true
-        format: 'sarif'
-        output: 'trivy-results.sarif'
-        severity: 'CRITICAL'
-        skip-setup-trivy: true
+      shell: bash
+      run: |
+        trivy fs .
+
