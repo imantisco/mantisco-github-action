@@ -50,6 +50,7 @@ runs:
       with:
         scan-type: 'fs'
         ignore-unfixed: true
+
         format: ${{ inputs.format }}
         output: ${{ inputs.output_file }}
         severity: ${{ inputs.severity }}

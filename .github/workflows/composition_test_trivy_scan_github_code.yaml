@@ -11,3 +11,7 @@ jobs:
     
     steps:
       - uses: imantisco/mantisco-github-action/composition/test_trivy_scan_github_code@dev
+        with:
+          format: "sarif"
+          severity: "CRITICAL"
+          output_file: "trivy-results.sarif"
