@@ -66,6 +66,7 @@ runs:
       shell: bash
       run: |
         echo "Prepared"
+        echo ${{ steps.trivy-result.outputs.trivy-result }}
     
     - name: "[6/7] Trivy 변환된 결과를 Issue에 게시하기"
       shell: bash
