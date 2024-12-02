@@ -1,6 +1,10 @@
 # Test Trivy scan AWS ECR Registry
 
+[![Composition / Test Trivy Scan AWS ECR Resgistry](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_trivy_scan_aws_ecr_registry.yaml/badge.svg)](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_trivy_scan_aws_ecr_registry.yaml)
+
 Trivy로 AWS ECR Registry 스캔하기
+
+> Public Image의 경우 AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION를 공란 '' 으로 할당하여 검사 가능합니다.
 
 ## Get Started
 
@@ -26,11 +30,11 @@ jobs:
         with:
           format: "sarif"
           output_file: "trivy-results.sarif"
-          image-ref: ${{ env.AWS_ECR_IMAGE_REF }}
         env:
-          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
+          AWS_ECR_IMAGE_REF: ${{ secrets.AWS_ECR_IMAGE_REF }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           
       - name: Output
         shell: bash
