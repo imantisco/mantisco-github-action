@@ -1,5 +1,7 @@
 # Test Trivy scan GitHub iac config
 
+[![Composition / Test Trivy Scan GitHub IaC Config](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_trivy_scan_github_iac_config.yaml/badge.svg)](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_trivy_scan_github_iac_config.yaml)
+
 Trivy로 GitHub IaC Code 스캔하기
 
 - [composition/test_trivy_scan_github_code](../test_trivy_scan_github_code/) : Application Code scan
