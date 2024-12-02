@@ -41,5 +41,9 @@ runs:
       shell: bash
       run: |
         cd test/
+        
+        set -x
+        chmod +x ${{ github.action_path }}/action.sh
+        ${{ github.action_path }}/action.sh DEBUG
 
         
