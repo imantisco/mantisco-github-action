@@ -1,17 +1,17 @@
-name: PR Generator Test
+# name: PR Generator Test
 
-on:
-  push:
-    branches:
-      - 'ci/*'
-      - 'ci/*/*'
+# on:
+#   push:
+#     branches:
+#       - 'ci/*'
+#       - 'ci/*/*'
 
-jobs:
-  test:
-    runs-on: ubuntu-22.04
+# jobs:
+#   test:
+#     runs-on: ubuntu-22.04
     
-    steps:
-      - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
-        with:
-          dest_branch: dev
-          github_token: ${{ github.token }}
+#     steps:
+#       - uses: imantisco/mantisco-github-action/ci/pull_request@ci/pull_request/pull_request_generator
+#         with:
+#           dest_branch: dev
+#           github_token: ${{ github.token }}
