@@ -1,0 +1,17 @@
+name: Composition / PR Generator Test
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - uses: imantisco/mantisco-github-action/composition/pull_request_generator@dev
+        with:
+          dest_branch: main
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
