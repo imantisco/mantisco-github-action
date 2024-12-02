@@ -2,7 +2,7 @@
 # Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-infrastructure-as-code
 name: Composition / Test Trivy scan github iac config
 
-input:
+inputs:
   hide-progress: 
     description: "디버그 모드에서는 활성화해주세요"
     default: true
@@ -37,10 +37,10 @@ input:
     # default: "trivy-results.sarif"
     required: true
 
-output:
+outputs:
   trivy-result:
     description: "trivy 실행 결과"
-    value: "${{ steps.trivy-result.outputs.trivy-result }}"
+    value: ${{ steps.trivy-result.outputs.trivy-result }}
 
 permissions:
   contents: read          # for actions/checkout to fetch code
