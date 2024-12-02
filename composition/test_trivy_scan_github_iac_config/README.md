@@ -30,6 +30,42 @@ jobs:
           hide-progress: false # for Debug mode
 ```
 
+- advanced
+
+```yaml
+name: Composition / Test Trivy Scan GitHub IaC Config
+
+permissions:
+  contents: read          # for actions/checkout to fetch code
+  actions: read           # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+  security-events: write  # for github/codeql-action/upload-sarif to upload SARIF results
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - uses: imantisco/mantisco-github-action/composition/test_trivy_scan_github_iac_config@dev
+        id: test_trivy_scan_github_iac_conf
+        with:
+          # format: "template"
+          format: "sarif"
+          severity: "HIGH,CRITICAL"
+          # severity: "HIGH,CRITICAL" # Reccommendation
+          output_file: "trivy-results.sarif"
+          hide-progress: false
+          
+      - name: Output
+        shell: bash
+        run: |
+          echo ${{ steps.test_trivy_scan_github_iac_conf.outputs.trivy-result }}
+```
+
 ## More Information
 
 이 GitHub Composite Action을 활성화하면 자동으로 <br>
