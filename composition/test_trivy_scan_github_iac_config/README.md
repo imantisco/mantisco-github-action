@@ -35,11 +35,6 @@ jobs:
 ```yaml
 name: Composition / Test Trivy Scan GitHub IaC Config
 
-permissions:
-  contents: read          # for actions/checkout to fetch code
-  actions: read           # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-  security-events: write  # for github/codeql-action/upload-sarif to upload SARIF results
-
 on:
   push:
     branches-ignore:
@@ -47,6 +42,11 @@ on:
 
 jobs:
   test:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+
     runs-on: ubuntu-22.04
     
     steps:
