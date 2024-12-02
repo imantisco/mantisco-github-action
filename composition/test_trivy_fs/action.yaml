@@ -14,9 +14,9 @@ runs:
         path: |
           trivy_0.57.1_Linux-64bit.deb
           /usr/bin/trivy
-        key: ${{ runner.os }}-helm-${{ hashFiles('trivy_0.57.1_Linux-64bit.deb') }}
+        key: ${{ runner.os }}-trivy-${{ hashFiles('trivy_0.57.1_Linux-64bit.deb') }}
         restore-keys: |
-          ${{ runner.os }}-helm-
+          ${{ runner.os }}-trivy-
 
     - name: "[3/4] Trivy CLI 설치하기"
       shell: bash
