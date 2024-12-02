@@ -34,7 +34,7 @@ runs:
         wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
         sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
 
-      if: steps.trivy-cache.outputs.cache-hit == 'true'
+      # if: steps.trivy-cache.outputs.cache-hit == 'true'
       shell: bash
 
     - name: "[4/4] Trivy FileSystem 감사하기(테스트)"
