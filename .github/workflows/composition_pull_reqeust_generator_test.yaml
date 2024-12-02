@@ -13,4 +13,5 @@ jobs:
       - uses: imantisco/mantisco-github-action/composition/pull_request_generator@dev
         with:
           dest_branch: main
-          github_token: ${{ github.token }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
