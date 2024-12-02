@@ -27,6 +27,7 @@ jobs:
           format: "sarif"
           severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
           output_file: "trivy-results.sarif"
+          hide-progress: false # for Debug mode
 ```
 
 ## More Information
