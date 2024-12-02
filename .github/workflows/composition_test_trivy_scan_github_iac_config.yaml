@@ -28,4 +28,6 @@ jobs:
       - name: Output
         shell: bash
         run: |
-          echo ${{ steps.test_trivy_scan_github_iac_conf.outputs.trivy-result }}`
+          echo ${{ steps.test_trivy_scan_github_iac_conf.outputs.trivy-result }}` > trivy-result.json
+
+          cat trivy-result.json
