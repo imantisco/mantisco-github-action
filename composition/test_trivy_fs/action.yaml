@@ -17,9 +17,6 @@ runs:
         version: v0.57.1
 
     - name: "[3/3] Trivy 실행하기"
-      uses: aquasecurity/trivy-action@master
-      with:
-        cache: true
-        scan-ref: '.'
-        scan-type: 'fs'
-        severity: 'CRITICAL'
+      run: |
+        trivy fs .
+
