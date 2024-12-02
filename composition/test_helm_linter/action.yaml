@@ -1,0 +1,45 @@
+name: Composition / Test Helm Template
+
+
+input:
+  dest_branch:
+    description: "MODE 를 선택하세요 [INFO, DEBUG, WARNING, ERROR]"
+    defualt: DEBUG
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: "[1/4] checkout"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: "[2/4] Cache Helm CLI"
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.helm
+          /usr/local/bin/helm
+        key: ${{ runner.os }}-helm-${{ hashFiles('get_helm.sh') }}
+        restore-keys: |
+          ${{ runner.os }}-helm-
+
+    - name: "[3/4] Install Helm CLI"
+      shell: bash
+      run: |
+        if ! command -v helm &> /dev/null; then
+          echo "Helm not found, installing..."
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+        else
+          echo "Helm is cached, skipping installation."
+        fi
+
+    - name: "[4/4] Helm Template"
+      shell: bash
+      run: |
+        cd test/
+
+        
