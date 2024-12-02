@@ -15,4 +15,4 @@ runs:
         sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
 
         ls
-        ls /usr/local/bin | grep trivy
+        which trivy
