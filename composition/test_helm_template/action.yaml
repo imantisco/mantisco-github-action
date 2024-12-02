@@ -19,7 +19,7 @@ runs:
           ${{ runner.os }}-helm-
 
     - name: "[3/4] Install Helm CLI"
-      shell: sh
+      shell: bash
       run: |
         if ! command -v helm &> /dev/null; then
           echo "Helm not found, installing..."
@@ -31,10 +31,10 @@ runs:
         fi
 
     - name: "[4/4] Helm Template"
-      shell: sh
+      shell: bash
       run: |
         chmod +x ${{ github.action_path }}/action.sh
 
         ${{ github.action_path }}/action.sh > action.log
 
-        cat action.log | echo
+        cat action.log 
