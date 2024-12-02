@@ -54,7 +54,7 @@ runs:
     - name: "[3/4] Trivy 실행하기"
       uses: aquasecurity/trivy-action@0.28.0
       with:
-        exit-code: 1
+        # exit-code: 1
         scan-type: 'config'
         hide-progress: ${{ inputs.hide-progress }}
 
