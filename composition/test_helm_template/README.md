@@ -1,13 +1,13 @@
 # Test Helm Tempalte
 
-[![Composition / Test Helm Template](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_helm_temlate_test.yaml/badge.svg)](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_helm_temlate_test.yaml)
+[![Composition / Test Helm Template](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_helm_temlate_test.yaml/badge.svg)](https://github.com/imantisco/mantisco-github-action/actions/workflows/composition_test_helm_temlate_test.yaml)
 
 Helm Template과 values 파일을 동적으로 인식해서 테스트 진행
 
 ## Get Started
 
 ```yaml
-name: Composition / Test Helm Template
+name: Helm Template
 
 on:
   push:
