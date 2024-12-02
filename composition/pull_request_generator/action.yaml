@@ -23,7 +23,7 @@ runs:
     - name: "[2/2] pr generate"
       shell: bash
       env:
-        GH_TOKEN: ${{ inputs.github_token }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
 
       run: |
         destBranch=${{ inputs.dest_branch }}
