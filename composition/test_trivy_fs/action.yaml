@@ -21,8 +21,14 @@ runs:
     - name: "[3/4] Trivy CLI 설치하기"
       shell: bash
       run: |
-        wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
-        sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
+        if ! command -v trivy &> /dev/null; then
+          echo "[INFO] Trivy CLI가 설치를 시작합니다."
+
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
+          sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
+        else
+          echo "[INFO] Trivy CLI가 설치되어 있습니다."
+        fi
 
     - name: "[4/4] Trivy FileSystem 감사하기(테스트)"
       shell: bash
