@@ -11,3 +11,5 @@ jobs:
     
     steps:
       - uses: imantisco/mantisco-github-action/composition/test_helm_template@dev
+        with:
+          base_directory: ./composition/test_helm_template
