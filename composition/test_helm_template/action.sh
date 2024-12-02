@@ -1,4 +1,3 @@
-#!/bin/bash
 # chmod +x test-helm-template.sh
 # ./test-helm-template.sh
 # ./test-helm-template.sh DEBUG
