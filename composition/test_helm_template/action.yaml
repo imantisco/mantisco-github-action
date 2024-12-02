@@ -24,7 +24,6 @@ runs:
         restore-keys: |
           ${{ runner.os }}-helm-
 
-
     - name: "[3/4] Install Helm CLI"
       shell: sh
       run: |
@@ -40,5 +39,6 @@ runs:
     - name: "[4/4] Helm Template"
       shell: sh
       run: |
-        cd ${{ inputs.base_directory }}
-        ls
+        chmod +x ./action.sh
+        
+        ./action.sh
