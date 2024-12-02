@@ -16,4 +16,4 @@ jobs:
           severity: "HIGH,CRITICAL"
           # severity: "HIGH,CRITICAL" # Reccommendation
           output_file: "trivy-results.sarif"
-          hide-progress: false
+          hide_progress: false
