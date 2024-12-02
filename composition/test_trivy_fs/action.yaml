@@ -15,6 +15,7 @@ runs:
         version: v0.57.1
 
     - name: "[3/3] Trivy 실행하기"
+      shell: bash
       run: |
         trivy fs .
 
