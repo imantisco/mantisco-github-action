@@ -1,5 +1,5 @@
 # Scan : https://github.com/imantisco/mantisco-github-action/security
-# Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-your-git-repo
+# Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-infrastructure-as-code
 name: Composition / Test Trivy scan github iac config
 
 input:
@@ -51,7 +51,7 @@ runs:
       with:
         exit-code: 1
         scan-type: 'config'
-        ignore-unfixed: true
+        hide-progress: true
 
         format: ${{ inputs.format }}
         output: ${{ inputs.output_file }}
