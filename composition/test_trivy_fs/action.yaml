@@ -1,7 +1,5 @@
 name: Composition / Test Trivy FS(FileSystem)
 
-input:
-
 runs:
   using: composite
   steps:
