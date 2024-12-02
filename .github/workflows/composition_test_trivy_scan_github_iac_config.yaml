@@ -22,4 +22,4 @@ jobs:
       - name: Output
         shell: bash
         run: |
-          echo ${{ steps.composite_action.outputs.trivy-result }}"
+          echo ${{ steps.test_trivy_scan_github_iac_conf.outputs.trivy-result }}"
