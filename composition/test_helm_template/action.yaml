@@ -37,4 +37,4 @@ runs:
 
         ${{ github.action_path }}/action.sh > ${{ github.action_path }}/action.log
 
-        cat ${{ github.action_path }}/action.log
+        cat ${{ github.action_path }}/action.log | echo
