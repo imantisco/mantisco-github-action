@@ -1,4 +1,4 @@
-name: Composition / Test Helm Template
+name: Composition / Test Helm Linter
 
 on:
   push:
