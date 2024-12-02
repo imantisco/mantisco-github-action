@@ -172,6 +172,7 @@ def updatePullRequest(
         '--title', str(title),
         '--body', f'{body}',
     ]
+    print(splitedCommand)
 
     TK = ','
     hasLabel = len(labelList) > 0
@@ -209,6 +210,7 @@ def createPullRequest(
         '--title', title,
         '--body', body
     ]
+    print(splitedCommand)
 
     TK = ','
     hasLabel = len(labelList) > 0
