@@ -35,6 +35,4 @@ runs:
       run: |
         chmod +x ${{ github.action_path }}/action.sh
 
-        ${{ github.action_path }}/action.sh > action.log
-
-        cat action.log 
+        ${{ github.action_path }}/action.sh
