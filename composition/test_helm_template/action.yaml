@@ -3,12 +3,12 @@ name: Composition / Test Helm Template
 runs:
   using: composite
   steps:
-    - name: "[1/4] checkout"
+    - name: "[1/5] checkout"
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
-    - name: "[2/4] Cache Helm CLI"
+    - name: "[2/5] Cache Helm CLI"
       uses: actions/cache@v3
       with:
         path: |
@@ -18,7 +18,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-helm-
 
-    - name: "[3/4] Install Helm CLI"
+    - name: "[3/5] Install Helm CLI"
       shell: bash
       run: |
         if ! command -v helm &> /dev/null; then
@@ -30,9 +30,11 @@ runs:
           echo "Helm is cached, skipping installation."
         fi
 
-    - name: "[4/4] Helm Template"
+    - name: "[4/5] Helm Template"
       shell: bash
-      run: |
-        chmod +x ${{ github.action_path }}/action.sh
+      run: chmod +x ${{ github.action_path }}/action.sh
 
-        ${{ github.action_path }}/action.sh
+    - name: "[5/5] Helm Template"
+      shell: bash
+      run: ${{ github.action_path }}/action.sh
+        
