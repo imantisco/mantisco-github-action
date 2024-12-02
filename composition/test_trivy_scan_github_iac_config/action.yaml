@@ -80,7 +80,8 @@ runs:
         OUTPUT_FILE_NAME=${{ inputs.output_file }}
         OUTPUT_FILE=$(cat $OUTPUT_FILE_NAME)
 
-        echo "::set-output name=trivy-result::$OUTPUT_FILE"
+        echo $OUTPUT_FILE >> $GITHUB_ENV
+        # echo "::set-output name=trivy-result::$OUTPUT_FILE"
 
     - name: "[4/4] Trivy Security Tab에 게시하기"
       uses: github/codeql-action/upload-sarif@v3
