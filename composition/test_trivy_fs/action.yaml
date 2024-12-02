@@ -13,8 +13,8 @@ runs:
       uses: actions/cache@v3
       with:
         path: |
-          # trivy_0.57.1_Linux-64bit.deb
-          /usr/bin/trivy
+          /home/runner/work/mantisco-github-action/mantisco-github-action/trivy_0.57.1_Linux-64bit.deb
+          /usr/bin/trivy/**
         key: ${{ runner.os }}-trivy-${{ hashFiles('**/trivy_0.57.1_Linux-64bit.deb') }}
         restore-keys: |
           ${{ runner.os }}-trivy-
