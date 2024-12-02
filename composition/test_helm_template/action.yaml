@@ -1,11 +1,5 @@
 name: Composition / Test Helm Template
 
-input:
-  base_directory:
-    description: "기본 경로"
-    required: true
-    default: '.'
-
 runs:
   using: composite
   steps:
@@ -40,5 +34,5 @@ runs:
       shell: sh
       run: |
         chmod +x ./action.sh
-        
+
         ./action.sh
