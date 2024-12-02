@@ -1,0 +1,63 @@
+# Scan : https://github.com/imantisco/mantisco-github-action/security
+# Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-your-git-repo
+name: Composition / Test Trivy scan github iac config
+
+input:
+  format:
+    description: "
+    보안 레벨: [
+       table,     json,       template,
+       sarif,     cyclonedx,  spdx,
+       spdx-json, github,     cosign-vuln
+    ]
+    e.g.
+    - table
+    "
+    default: "sarif"
+    required: true
+
+  severity:
+    description: "
+      보안 레벨: [UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL]
+      e.g.
+      - UNKNOWN,LOW,MEDIUM
+      - LOW,MEDIUM,HIGH
+      - MEDIUM,HIGH,CRITICAL
+    "
+    default: "CRITICAL"
+    required: true
+
+  output_file:
+    description: "Output 파일을 입력해주세요."
+    default: "trivy-results.sarif"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: "[1/4] Git 체크아웃"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+
+    - name: "[2/4] Trivy 설치 및 캐시"
+      uses: aquasecurity/setup-trivy@v0.2.0
+      with:
+        cache: true
+        version: v0.57.1
+
+    - name: "[3/4] Trivy 실행하기"
+      uses: aquasecurity/trivy-action@0.28.0
+      with:
+        exit-code: 1
+        scan-type: 'config'
+        ignore-unfixed: true
+
+        format: ${{ inputs.format }}
+        output: ${{ inputs.output_file }}
+        severity: ${{ inputs.severity }}
+
+    - name: "[4/4] Trivy Security Tab에 게시하기"
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.output_file }}
