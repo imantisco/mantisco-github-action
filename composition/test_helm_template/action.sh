@@ -2,8 +2,6 @@
 # chmod +x test-helm-template.sh
 # ./test-helm-template.sh
 # ./test-helm-template.sh DEBUG
-set -e
-
 export KUBECONFIG=/dev/null
 
 DEFAULT_LOG_MODE=INFO
