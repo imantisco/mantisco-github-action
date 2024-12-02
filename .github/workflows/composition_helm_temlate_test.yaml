@@ -1,0 +1,13 @@
+name: Composition / Test Helm Template
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    
+    steps:
+      - uses: imantisco/mantisco-github-action/composition/test_helm_template@dev
