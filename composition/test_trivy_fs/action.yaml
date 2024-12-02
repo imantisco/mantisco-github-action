@@ -1,5 +1,11 @@
 name: Composition / Test Trivy FS(FileSystem)
 
+input:
+  trivy_path:
+    description: "wget link를 입력하세요."
+    defualt: "https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb"
+    required: true
+
 runs:
   using: composite
   steps:
@@ -15,7 +21,7 @@ runs:
         path: |
           /home/runner/work/mantisco-github-action/mantisco-github-action/trivy_0.57.1_Linux-64bit.deb
           /usr/bin/trivy/**
-        key: ${{ runner.os }}-trivy-${{ hashFiles('**/trivy_0.57.1_Linux-64bit.deb') }}
+        key: ${{ runner.os }}-trivy-${{ hash(${{ inputs.trivy_path }}) }}
         restore-keys: |
           ${{ runner.os }}-trivy-
 
