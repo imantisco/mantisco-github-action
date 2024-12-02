@@ -9,6 +9,7 @@ runs:
         fetch-depth: 1
 
     - name: "[2/4] Trivy CLI 캐시하기"
+      id: trivy-cache
       uses: actions/cache@v3
       with:
         path: |
@@ -18,17 +19,18 @@ runs:
         restore-keys: |
           ${{ runner.os }}-trivy-
 
+    - run: echo "[INFO] Trivy CLI 캐시 적중 성공"
+      if: steps.trivy-cache.outputs.cache-hit == 'true'
+
+    - run: echo "[INFO] Trivy CLI 캐시 적중 실패"
+      if: steps.trivy-cache.outputs.cache-hit == 'false'
+
     - name: "[3/4] Trivy CLI 설치하기"
       shell: bash
       run: |
-        if ! command -v trivy &> /dev/null; then
-          echo "[INFO] Trivy CLI가 설치를 시작합니다."
-
-          wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
-          sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
-        else
-          echo "[INFO] Trivy CLI가 설치되어 있습니다."
-        fi
+        wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
+        sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
+      if: steps.trivy-cache.outputs.cache-hit == 'false'
 
     - name: "[4/4] Trivy FileSystem 감사하기(테스트)"
       shell: bash
