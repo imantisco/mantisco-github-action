@@ -3,7 +3,7 @@
 name: Composition / Test Trivy scan github iac config
 
 input:
-  hide_progress: 
+  hide-progress: 
     description: "디버그 모드에서는 활성화해주세요"
     default: true
     required: true
@@ -56,7 +56,7 @@ runs:
       with:
         exit-code: 1
         scan-type: 'config'
-        hide-progress: ${{ input.hide_progress }}
+        hide-progress: ${{ inputs.hide-progress }}
 
         format: ${{ inputs.format }}
         output: ${{ inputs.output_file }}
