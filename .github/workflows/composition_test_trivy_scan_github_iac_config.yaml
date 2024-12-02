@@ -18,8 +18,8 @@ jobs:
       - uses: imantisco/mantisco-github-action/composition/test_trivy_scan_github_iac_config@dev
         id: test_trivy_scan_github_iac_conf
         with:
-          format: "template"
-          # format: "sarif"
+          # format: "template"
+          format: "sarif"
           severity: "HIGH,CRITICAL"
           # severity: "HIGH,CRITICAL" # Reccommendation
           output_file: "trivy-results.sarif"
