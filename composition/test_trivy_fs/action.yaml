@@ -3,16 +3,23 @@ name: Composition / Test Trivy FS(FileSystem)
 runs:
   using: composite
   steps:
-    - name: "[1/4] checkout"
+    - name: "[1/4] Git 체크아웃"
       uses: actions/checkout@v3
       with:
         fetch-depth: 1
 
-    - name: "[3/4] Install Trivy CLI"
+    - name: "[2/4] Trivy CLI 캐시하기"
+      uses: actions/cache@v3
+      with:
+        path: |
+          trivy_0.57.1_Linux-64bit.deb
+          /usr/bin/trivy
+        key: ${{ runner.os }}-helm-${{ hashFiles('trivy_0.57.1_Linux-64bit.deb') }}
+        restore-keys: |
+          ${{ runner.os }}-helm-
+
+    - name: "[3/4] Trivy CLI 설치하기"
       shell: bash
       run: |
         wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
         sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
-
-        ls
-        which trivy
