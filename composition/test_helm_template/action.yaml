@@ -1,0 +1,32 @@
+name: Composition / Test Helm Template
+
+runs:
+  using: composite
+  steps:
+    - name: "[1/3] Cache Helm CLI"
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.helm
+          /usr/local/bin/helm
+        key: ${{ runner.os }}-helm-${{ hashFiles('get_helm.sh') }}
+        restore-keys: |
+          ${{ runner.os }}-helm-
+
+
+    - name: "[2/3] Install Helm CLI"
+      shell: sh
+      run: |
+        if ! command -v helm &> /dev/null; then
+          echo "Helm not found, installing..."
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+        else
+          echo "Helm is cached, skipping installation."
+        fi
+
+    - name: "[3/3] Helm Template"
+      shell: sh
+      run: |
+        helm template 
