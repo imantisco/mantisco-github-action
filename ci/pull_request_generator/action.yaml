@@ -1,8 +1,10 @@
 # Composite Action : https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
 # GitHub Action의 Compsite 액션 지정하기 : https://blog.outsider.ne.kr/1592
 # GitHub Workflow 재사용하기 : https://marshallku.com/dev/reuse-github-actions
-
 name: PR Generator
+
+# Requirements : 아래 권한 추가 필요
+# workflow.yaml# .job.[job-id].permissions에 아래 권한 추가
 
 input:
   dest_branch:
@@ -11,6 +13,7 @@ input:
 
   github_token:
     description: "{{ .github.token }} 필요"
+    required: true
 
 runs:
   using: composite
@@ -22,20 +25,17 @@ runs:
 
     - name: "[2/2] pr generate"
       shell: bash
-      env:
-        GH_TOKEN: ${{ inputs.github_token }}
-
       run: |
         destBranch=${{ inputs.dest_branch }}
         sourceBranch=$(git branch --show-current)
 
-        echo "PR will be geneated from $sourceBranch to $destBranch"
-        echo "========== Fetch =========="
-        git fetch origin ${destBranch}:${sourceBranch}
-        echo "==========================="
-
-        echo "========== Log =========="
+        echo "Git tree is being verified from $sourceBranch to $destBranch"
+        
+        git fetch origin ${destBranch}:${destBranch}
         git log "${destBranch}..${sourceBranch}" --oneline
-        echo "=========================="
 
-        # python action.py ${destBranch} ${sourceBranch}
+        echo "PR will be geneated from $sourceBranch to $destBranch"
+
+        python ${{ github.action_path }}/action.py ${destBranch} ${sourceBranch}
+        
+        # https://stackoverflow.com/questions/77728043/github-composite-action-to-run-python-script-in-repo
