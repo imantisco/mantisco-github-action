@@ -31,8 +31,8 @@ runs:
 
         echo "PR will be geneated from $sourceBranch to $destBranch"
         echo "========== Fetch =========="
-        echo "git fetch origin ${destBranch}:${sourceBranch}"
-        git fetch origin ${destBranch}:${sourceBranch}
+        # echo "git fetch origin ${destBranch}:${sourceBranch}"
+        # git fetch origin ${destBranch}:${sourceBranch}
         echo "==========================="
 
         echo "========== Log =========="
