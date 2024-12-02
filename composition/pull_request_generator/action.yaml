@@ -38,4 +38,4 @@ runs:
         git log "${destBranch}..${sourceBranch}" --oneline
         echo "=========================="
 
-        # python action.py ${destBranch} ${sourceBranch}
+        python action.py ${destBranch} ${sourceBranch}
