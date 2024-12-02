@@ -3,7 +3,7 @@ name: Composition / Test Trivy Scan AWS ECR Resgistry
 on:
   push:
     branches-ignore:
-      - 'main'`
+      - 'main'
 
 jobs:
   test:
