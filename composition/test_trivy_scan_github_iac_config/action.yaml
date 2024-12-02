@@ -80,7 +80,7 @@ runs:
         OUTPUT_FILE_NAME=${{ inputs.output_file }}
         OUTPUT_FILE=$(cat $OUTPUT_FILE_NAME)
 
-        echo $OUTPUT_FILE >> $GITHUB_ENV
+        echo "trivy-result=$(echo $OUTPUT_FILE)" >> $GITHUB_OUTPUT
         # echo "::set-output name=trivy-result::$OUTPUT_FILE"
 
     - name: "[4/4] Trivy Security Tab에 게시하기"
