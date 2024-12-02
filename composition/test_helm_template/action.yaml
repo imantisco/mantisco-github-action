@@ -40,13 +40,8 @@ runs:
     - name: "[4/5] Helm Template"
       shell: bash
       run: |
+        cd test/
+
         set -x
         chmod +x ${{ github.action_path }}/action.sh
         ${{ github.action_path }}/action.sh
-
-    - name: "[5/5] Helm Template"
-      shell: bash
-      run: |
-        set -x
-        chmod +x ${{ github.action_path }}/test.sh
-        ${{ github.action_path }}/test.sh

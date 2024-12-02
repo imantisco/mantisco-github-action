@@ -79,6 +79,7 @@ validateHelmChart() {
     logger INFO "$helmChart 검증 종료"
 }
 
+LEVEL=$1
 
 helmChartList=$(listHelmChart)
 echo "helmChartList : $helmChartList"
