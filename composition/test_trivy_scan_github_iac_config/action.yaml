@@ -13,7 +13,7 @@ input:
     e.g.
     - table
     "
-    default: "sarif"
+    # default: "sarif"
     required: true
 
   severity:
@@ -24,12 +24,12 @@ input:
       - LOW,MEDIUM,HIGH
       - MEDIUM,HIGH,CRITICAL
     "
-    default: "CRITICAL"
+    # default: "CRITICAL"
     required: true
 
   output_file:
     description: "Output 파일을 입력해주세요."
-    default: "trivy-results.sarif"
+    # default: "trivy-results.sarif"
     required: true
 
 runs:

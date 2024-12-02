@@ -13,5 +13,6 @@ jobs:
       - uses: imantisco/mantisco-github-action/composition/test_trivy_scan_github_iac_config@dev
         with:
           format: "sarif"
-          severity: "HIGH,CRITICAL"
+          severity: "UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL"
+          # severity: "HIGH,CRITICAL" # Reccommendation
           output_file: "trivy-results.sarif"
