@@ -36,6 +36,8 @@ runs:
         wget https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.deb
         sudo dpkg -i trivy_0.57.1_Linux-64bit.deb
 
+        sudo setfacl -m "u:$(id -u runner):rw" $(which trivy)
+
         pwd
 
         ls
