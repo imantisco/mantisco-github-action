@@ -38,15 +38,15 @@ runs:
 
         sudo setfacl -m "u:$(id -u runner):rw" $(which trivy)
 
-        pwd
+        # pwd
 
-        ls
-        rm trivy_0.57.1_Linux-64bit.deb
+        # ls
+        # rm trivy_0.57.1_Linux-64bit.deb
         
-        which trivy
+        # which trivy
 
-        id
-        ls -al /usr/bin/trivy
+        # id
+        # ls -al /usr/bin/trivy
       # if: steps.trivy-cache.outputs.cache-hit == 'true'
       shell: bash
 
