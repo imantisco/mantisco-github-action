@@ -1,0 +1,80 @@
+# Scan : https://github.com/imantisco/mantisco-github-action/security
+# Origin : https://github.com/aquasecurity/trivy-action?tab=readme-ov-file#using-trivy-to-scan-infrastructure-as-code
+name: Composition / Test Trivy scan github iac config
+
+inputs:
+  format:
+    description: "
+    보안 레벨: [
+       table,     json,       template,
+       sarif,     cyclonedx,  spdx,
+       spdx-json, github,     cosign-vuln
+    ]
+    e.g.
+    - table
+    "
+    # default: "sarif"
+    required: true
+
+  output_file:
+    description: "Output 파일을 입력해주세요."
+    # default: "trivy-results.sarif"
+    required: true
+
+outputs:
+  trivy-result:
+    description: "trivy 실행 결과"
+    value: ${{ steps.trivy-result.outputs.trivy-result }}
+    
+runs:
+  using: composite
+  steps:
+    - name: "[1/7] Git 체크아웃"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 1
+
+    - name: "[2/7] Trivy 설치 및 캐시"
+      uses: aquasecurity/setup-trivy@v0.2.0
+      with:
+        cache: true
+        version: v0.57.1
+
+    - name: "[3/7] Trivy 실행하기"
+      id: trivy-execution
+      uses: aquasecurity/trivy-action@0.28.0
+      with:
+        image-ref: ${{ env.AWS_ECR_IMAGE_REF }}
+        format: ${{ inputs.format }}
+        output: ${{ inputs.output_file }}
+      env:
+        AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ${{ env.AWS_DEFAULT_REGION }}
+
+    - name: "[4/7] Trivy 결과 Output에 저장하기"
+      id: trivy-result
+      shell: bash
+      run: |
+        OUTPUT_FILE_NAME=${{ inputs.output_file }}
+        OUTPUT_FILE=$(cat $OUTPUT_FILE_NAME )
+
+        echo "trivy-result=$(echo $OUTPUT_FILE)" >> $GITHUB_OUTPUT
+
+    - name: "[5/7] Trivy 결과 형태 변환하기"
+      id: trivy-result-convert
+      shell: bash
+      run: |
+        echo "Prepared"
+        echo ${{ steps.trivy-result.outputs.trivy-result }}
+    
+    - name: "[6/7] Trivy 변환된 결과를 Issue에 게시하기"
+      shell: bash
+      run: |
+        echo "Prepared"
+
+    # github/codeql-action/upload-sarif@v3 is not working
+    - name: "[7/7] Trivy Security Tab에 게시하기"
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.output_file }}
