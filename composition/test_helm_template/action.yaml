@@ -2,8 +2,8 @@ name: Composition / Test Helm Template
 
 input:
   helm_destination:
-    description: "경로"
-    default: "./test"
+    description: '경로'
+    default: './test'
     required: true
 
 runs:
@@ -20,7 +20,7 @@ runs:
         path: |
           ~/.helm
           /usr/local/bin/helm
-        key: ${{ runner.os }}-helm-${{ hashFiles('get_helm.sh') }}
+        key: ${{ runner.os }}-helm-get-helm-3
         restore-keys: |
           ${{ runner.os }}-helm-
 
