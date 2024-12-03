@@ -1,9 +1,9 @@
 name: Composition / Test Helm Template
 
 input:
-  dest_branch:
-    description: "MODE 를 선택하세요 [INFO, DEBUG, WARNING, ERROR]"
-    defualt: DEBUG
+  helm_destination:
+    description: "경로"
+    default: "./test"
     required: true
 
 runs:
@@ -39,7 +39,7 @@ runs:
     - name: "[4/4] Helm Template"
       shell: bash
       run: |
-        cd test/
+        cd ${{ inputs.helm_destination }}
 
         set -x
         chmod +x ${{ github.action_path }}/action.sh
